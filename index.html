@@ -7,11 +7,1000 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-* {box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Tajawal',Arial,sans-serif;background:#F2F2F7;color:#1d1d1f;direction:rtl}
+  :root {
+    --bg:           #F2F2F7;
+    --card:         #ffffff;
+    --accent:       #1A5C2C;
+    --accent-mid:   #2E7D4F;
+    --accent-light: #E8F5E9;
+    --accent-glow:  rgba(26,92,44,0.12);
+    --gold:         #C8963C;
+    --gold-light:   #FFF8EE;
+    --text-1:       #1d1d1f;
+    --text-2:       #6e6e73;
+    --text-3:       #aeaeb2;
+    --border:       #e0e0e6;
+    --hero-bg:      #07120A;
+    --r-sm:  10px;
+    --r-md:  18px;
+    --r-lg:  28px;
+    --r-xl:  40px;
+    --shadow-1: 0 2px 10px  rgba(0,0,0,0.05);
+    --shadow-2: 0 6px 28px  rgba(0,0,0,0.09);
+    --shadow-3: 0 16px 56px rgba(0,0,0,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Tajawal', -apple-system, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    direction: rtl;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* â”€â”€ HERO â”€â”€ */
+  .hero {
+    background: var(--hero-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 32px 120px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 900px; height: 900px;
+    background: radial-gradient(circle, rgba(26,92,44,0.28) 0%, transparent 65%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 10% 20%, rgba(200,150,60,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 90% 80%, rgba(26,92,44,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; z-index: 2; max-width: 800px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(200,150,60,0.35);
+    border-radius: 100px;
+    padding: 10px 26px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #D4AA6A;
+    background: rgba(200,150,60,0.08);
+    margin-bottom: 40px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  .hero-title span {
+    background: linear-gradient(135deg, #4CAF82 0%, #A8D5B8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 56px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 72px;
+  }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 100px;
+    padding: 10px 24px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.62);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .hero-scroll:hover { color: rgba(255,255,255,0.55); }
+
+  .scroll-arrow {
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    animation: bounce 2.4s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* â”€â”€ INTRO STATS â”€â”€ */
+  .stats-section {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stats-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 24px 16px;
+    border-left: 1px solid var(--border);
+  }
+
+  .stat-item:last-child { border-left: none; }
+
+  .stat-num {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+  }
+
+  .stat-label {
+    font-size: 1.1rem;
+    color: var(--text-2);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* â”€â”€ SECTION HEADER â”€â”€ */
+  .section-header {
+    text-align: center;
+    padding: 80px 32px 52px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-1);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 1.2rem;
+    color: var(--text-2);
+    font-weight: 400;
+    line-height: 1.75;
+  }
+
+  /* â”€â”€ PLAN CARDS â”€â”€ */
+  .plans-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px 96px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .plan-card {
+    background: var(--card);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .plan-card:hover {
+    box-shadow: var(--shadow-3);
+    transform: translateY(-5px);
+    border-color: rgba(26,92,44,0.25);
+  }
+
+  .plan-card.featured {
+    grid-column: span 1;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), var(--shadow-2);
+  }
+
+  .plan-card.wide {
+    grid-column: span 3;
+    flex-direction: row;
+  }
+
+  .plan-card-top {
+    background: var(--hero-bg);
+    padding: 40px 36px 32px;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .plan-card.wide .plan-card-top {
+    min-width: 280px;
+    min-height: auto;
+  }
+
+  .plan-card-top::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(26,92,44,0.35) 0%, transparent 70%);
+    top: 0; right: -60px;
+    pointer-events: none;
+  }
+
+  .plan-featured-badge {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    background: var(--gold);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+
+  .plan-kcal {
+    font-size: 5rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -2px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .plan-kcal-unit {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .plan-card-body {
+    padding: 28px 32px 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-1);
+    margin-bottom: 10px;
+  }
+
+  .plan-desc {
+    font-size: 1.1rem;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+
+  .plan-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .plan-tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 100px;
+  }
+
+  .plan-tag.gold {
+    background: var(--gold-light);
+    color: var(--gold);
+  }
+
+  .plan-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--text-1);
+    color: #fff;
+    border-radius: var(--r-md);
+    padding: 14px 28px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: 'Tajawal', sans-serif;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    width: 100%;
+    text-align: center;
+  }
+
+  .plan-btn:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .plan-btn.accent {
+    background: var(--accent);
+  }
+
+  .plan-btn.accent:hover {
+    background: var(--accent-mid);
+  }
+
+  /* Calorie color accents */
+  .kcal-1200 .plan-card-top::before { background: radial-gradient(circle, rgba(33,150,243,0.3) 0%, transparent 70%); }
+  .kcal-1400 .plan-card-top::before { background: radial-gradient(circle, rgba(0,188,212,0.3) 0%, transparent 70%); }
+  .kcal-1600 .plan-card-top::before { background: radial-gradient(circle, rgba(26,92,44,0.4) 0%, transparent 70%); }
+  .kcal-1800 .plan-card-top::before { background: radial-gradient(circle, rgba(255,152,0,0.3) 0%, transparent 70%); }
+  .kcal-2000 .plan-card-top::before { background: radial-gradient(circle, rgba(233,30,99,0.25) 0%, transparent 70%); }
+
+  /* â”€â”€ GUIDE SECTION â”€â”€ */
+  .guide-section {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .guide-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  .guide-header {
+    margin-bottom: 48px;
+  }
+
+  .guide-eyebrow {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .guide-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text-1);
+    line-height: 1.25;
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .guide-card {
+    background: var(--bg);
+    border-radius: var(--r-md);
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .guide-card:hover {
+    box-shadow: var(--shadow-2);
+    transform: translateY(-3px);
+  }
+
+  .gc-icon {
+    font-size: 2rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .gc-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-1);
+    margin-bottom: 8px;
+  }
+
+  .gc-body {
+    font-size: 1rem;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+
+  /* â”€â”€ COMPARISON TABLE â”€â”€ */
+  .compare-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  .compare-table-wrap {
+    background: var(--card);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-2);
+    overflow: hidden;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .compare-table thead tr {
+    background: var(--hero-bg);
+  }
+
+  .compare-table thead th {
+    padding: 22px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    text-align: right;
+    border-left: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .compare-table thead th:first-child {
+    color: #fff;
+    font-size: 1.2rem;
+  }
+
+  .compare-table thead th:last-child { border-left: none; }
+
+  .compare-table tbody td {
+    padding: 18px 28px;
+    font-size: 1.1rem;
+    color: var(--text-1);
+    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  .compare-table tbody td:last-child { border-left: none; }
+
+  .compare-table tbody tr:last-child td { border-bottom: none; }
+  .compare-table tbody tr:hover td { background: #FAFAFA; }
+
+  .compare-table .row-label {
+    font-weight: 600;
+    color: var(--text-1);
+  }
+
+  .compare-table .val-num {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+
+  .compare-table .val-text {
+    color: var(--text-2);
+    font-size: 1rem;
+  }
+
+  /* â”€â”€ FAQ â”€â”€ */
+  .faq-section {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 0;
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-1);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .faq-q-icon {
+    width: 32px; height: 32px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .faq-a {
+    font-size: 1.1rem;
+    color: var(--text-2);
+    line-height: 1.8;
+    padding-right: 46px;
+  }
+
+  /* â”€â”€ FOOTER â”€â”€ */
+  .footer {
+    background: var(--hero-bg);
+    padding: 64px 32px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .footer-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .footer-divider {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 36px;
+    border-radius: 1px;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.28);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* â”€â”€ RESPONSIVE â”€â”€ */
+  @media (max-width: 900px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .plan-card.wide {
+      grid-column: span 2;
+      flex-direction: column;
+    }
+    .stats-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-item:nth-child(2) { border-left: none; }
+    .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+    .stat-item:nth-child(4) { border-top: 1px solid var(--border); }
+    .guide-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+      padding: 0 20px 64px;
+    }
+    .plan-card.wide {
+      grid-column: span 1;
+    }
+    .stats-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .guide-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero { padding: 80px 24px 100px; }
+    .hero-title { font-size: 2.8rem; }
+    .section-header { padding: 60px 24px 40px; }
+    .compare-section { padding: 60px 20px; }
+    .compare-table thead th,
+    .compare-table tbody td { padding: 14px 16px; font-size: 0.95rem; }
+  }
+
+  /* â”€â”€ SMOOTH SCROLL â”€â”€ */
+  html { scroll-behavior: smooth; }
+
+  /* â”€â”€ PLAN SELECTOR TAB â”€â”€ */
+  .selector-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 0 32px 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .selector-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    padding: 10px 24px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-2);
+    background: var(--card);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  .selector-tab:hover,
+  .selector-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(26,92,44,0.3);
+  }
 </style>
 </head>
 <body>
-<h1>Ø¹ÙŠØ§Ø¯Ø© Ø§Ù„ØªØºØ°ÙŠØ©</h1>
-</body>
-</html>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HERO â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">ğŸŒ¿ Ø¹ÙŠØ§Ø¯Ø© Ø§Ù„ØªØºØ°ÙŠØ© Ø§Ù„ØµØ­ÙŠØ© â€” Ø§Ù„Ø±ÙŠØ§Ø¶</div>
+    <h1 class="hero-title">Ø®Ø·Ø· ØºØ°Ø§Ø¦ÙŠØ©<br><span>Ù…Ø¯Ø±ÙˆØ³Ø© Ø¹Ù„Ù…ÙŠØ§Ù‹</span></h1>
+    <p class="hero-sub">
+      Ø®Ù…Ø³ Ø®Ø·Ø· Ø­Ù…ÙŠØ© Ù…ØªÙˆØ§Ø²Ù†Ø© Ù„Ù…Ø¯Ø© Ù§ Ø£ÙŠØ§Ù…ØŒ Ù…ØµÙ…Ù…Ø© Ø®ØµÙŠØµØ§Ù‹ Ù„Ù„Ø£Ø³Ø±Ø© Ø§Ù„Ø³Ø¹ÙˆØ¯ÙŠØ©<br>
+      ØªØ¹ØªÙ…Ø¯ Ø¹Ù„Ù‰ Ø§Ù„ÙˆØ¬Ø¨Ø§Øª Ø§Ù„Ù…Ù†Ø²Ù„ÙŠØ© ÙˆÙ…ÙƒÙˆÙ†Ø§Øª Ø§Ù„Ø³ÙˆÙ‚ Ø§Ù„Ù…Ø­Ù„ÙŠ
+    </p>
+    <div class="hero-pills">
+      <span class="hero-pill">ğŸ  ÙˆØ¬Ø¨Ø§Øª Ù…Ù†Ø²Ù„ÙŠØ©</span>
+      <span class="hero-pill">ğŸ“… Ù§ Ø£ÙŠØ§Ù… Ù…ØªÙƒØ§Ù…Ù„Ø©</span>
+      <span class="hero-pill">ğŸ”¬ Ø£Ø³Ø³ Ø¹Ù„Ù…ÙŠØ©</span>
+      <span class="hero-pill">âš–ï¸ Ù¥ Ù…Ø³ØªÙˆÙŠØ§Øª Ø­Ø±Ø§Ø±ÙŠØ©</span>
+      <span class="hero-pill">ğŸ“ Ù…Ù†Ø§Ø³Ø¨Ø© Ù„Ø³ÙƒØ§Ù† Ø§Ù„Ø±ÙŠØ§Ø¶</span>
+    </div>
+    <div class="hero-scroll" onclick="document.getElementById('plans').scrollIntoView()">
+      <div class="scroll-arrow">â†“</div>
+      <span>ØªØµÙÙ‘Ø­ Ø§Ù„Ø®Ø·Ø·</span>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• STATS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">Ù¥</div>
+      <div class="stat-label">Ø®Ø·Ø· ØºØ°Ø§Ø¦ÙŠØ©<br>Ù…ØªÙƒØ§Ù…Ù„Ø©</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Ù§</div>
+      <div class="stat-label">Ø£ÙŠØ§Ù… ÙˆØ¬Ø¨Ø§Øª<br>ÙŠÙˆÙ…ÙŠØ© Ù…ÙØµÙ‘Ù„Ø©</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Ù¤</div>
+      <div class="stat-label">ÙˆØ¬Ø¨Ø§Øª ÙŠÙˆÙ…ÙŠØ§Ù‹<br>ÙØ·ÙˆØ± Â· ØºØ¯Ø§Ø¡ Â· ÙˆØ¬Ø¨Ø© Ø®ÙÙŠÙØ© Â· Ø¹Ø´Ø§Ø¡</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Ù¡Ù¢Ù Ù <span style="font-size:1.8rem">â€“</span>Ù¢Ù Ù Ù </div>
+      <div class="stat-label">Ø³Ø¹Ø±Ø© Ø­Ø±Ø§Ø±ÙŠØ©<br>Ù„ÙƒÙ„ Ø®Ø·Ø©</div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• PLANS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="plans">
+  <div class="section-header">
+    <p class="section-eyebrow">Ø§Ù„Ø®Ø·Ø· Ø§Ù„ØºØ°Ø§Ø¦ÙŠØ©</p>
+    <h2 class="section-title">Ø§Ø®ØªØ± Ø§Ù„Ø®Ø·Ø© Ø§Ù„Ù…Ù†Ø§Ø³Ø¨Ø© Ù„Ùƒ</h2>
+    <p class="section-desc">ÙƒÙ„ Ø®Ø·Ø© Ù…ÙØµÙ…ÙÙ‘Ù…Ø© Ø¨Ø¹Ù†Ø§ÙŠØ© Ù„ØªÙˆÙÙŠØ± ØªÙˆØ§Ø²Ù† Ù…Ø«Ø§Ù„ÙŠ Ø¨ÙŠÙ† Ø§Ù„Ø¹Ù†Ø§ØµØ± Ø§Ù„ØºØ°Ø§Ø¦ÙŠØ© Ø§Ù„ÙƒØ¨Ø±Ù‰ ÙˆØ§Ù„Ù…ØºØ°ÙŠØ§Øª Ø§Ù„Ø¯Ù‚ÙŠÙ‚Ø©ØŒ Ù…Ø¹ Ù…Ø±Ø§Ø¹Ø§Ø© Ø§Ù„Ø£Ø°ÙˆØ§Ù‚ Ø§Ù„Ø³Ø¹ÙˆØ¯ÙŠØ©</p>
+  </div>
+
+  <div class="plans-grid">
+
+    <!-- 1200 -->
+    <a class="plan-card kcal-1200" href="Weight Reduction/Ø®Ø·Ø©_1200_Ø³Ø¹Ø±Ø©_Ø­Ø±Ø§Ø±ÙŠØ©.html">
+      <div class="plan-card-top">
+        <div class="plan-kcal">1200</div>
+        <div class="plan-kcal-unit">Ø³Ø¹Ø±Ø© Ø­Ø±Ø§Ø±ÙŠØ© / ÙŠÙˆÙ…</div>
+      </div>
+      <div class="plan-card-body">
+        <div class="plan-name">Ø®Ø·Ø© Ø§Ù„ØªØ®ÙÙŠÙ Ø§Ù„Ù…ÙƒØ«Ù‘Ù</div>
+        <p class="plan-desc">Ù…Ù†Ø§Ø³Ø¨Ø© Ù„Ù„Ù†Ø³Ø§Ø¡ Ø°ÙˆØ§Øª Ø§Ù„ÙˆØ²Ù† Ø§Ù„Ø²Ø§Ø¦Ø¯ ÙˆØ§Ù„Ù†Ø´Ø§Ø· Ø§Ù„Ø¨Ø¯Ù†ÙŠ Ø§Ù„Ù…Ù†Ø®ÙØ¶. Ø¹Ø¬Ø² Ø­Ø±Ø§Ø±ÙŠ Ù…Ø­ÙƒÙˆÙ… ÙŠØ¶Ù…Ù† ÙÙ‚Ø¯Ø§Ù† ÙˆØ²Ù† ØªØ¯Ø±ÙŠØ¬ÙŠ ÙˆØ¢Ù…Ù†.</p>
+        <div class="plan-tags">
+          <span class="plan-tag">ÙÙ‚Ø¯Ø§Ù† ÙˆØ²Ù† Ù…ÙƒØ«Ù‘Ù</span>
+          <span class="plan-tag">Ù†Ø´Ø§Ø· Ù…Ù†Ø®ÙØ¶</span>
+        </div>
+        <span class="plan-btn">Ø¹Ø±Ø¶ Ø§Ù„Ø®Ø·Ø© â†</span>
+      </div>
+    </a>
+
+    <!-- 1400 -->
+    <a class="plan-card kcal-1400" href="Weight Reduction/Ø®Ø·Ø©_1400_Ø³Ø¹Ø±Ø©_Ø­Ø±Ø§Ø±ÙŠØ©.html">
+      <div class="plan-card-top">
+        <div class="plan-kcal">1400</div>
+        <div class="plan-kcal-unit">Ø³Ø¹Ø±Ø© Ø­Ø±Ø§Ø±ÙŠØ© / ÙŠÙˆÙ…</div>
+      </div>
+      <div class="plan-card-body">
+        <div class="plan-name">Ø®Ø·Ø© Ø§Ù„ØªØ®ÙÙŠÙ Ø§Ù„Ù…Ø¹ØªØ¯Ù„</div>
+        <p class="plan-desc">Ø®ÙŠØ§Ø± Ù…ØªÙˆØ§Ø²Ù† Ù„Ù„Ù†Ø³Ø§Ø¡ Ø°ÙˆØ§Øª Ø§Ù„Ù†Ø´Ø§Ø· Ø§Ù„Ø¨Ø¯Ù†ÙŠ Ø§Ù„Ù…ØªÙˆØ³Ø· Ø£Ùˆ Ø§Ù„Ø±Ø¬Ø§Ù„ Ø¨Ù…Ø³ØªÙˆÙ‰ Ù†Ø´Ø§Ø· Ù…Ù†Ø®ÙØ¶ ÙŠØ³Ø¹ÙˆÙ† Ù„ÙÙ‚Ø¯Ø§Ù† Ø§Ù„ÙˆØ²Ù†.</p>
+        <div class="plan-tags">
+          <span class="plan-tag">ÙÙ‚Ø¯Ø§Ù† ÙˆØ²Ù† Ù…Ø¹ØªØ¯Ù„</span>
+          <span class="plan-tag">Ù†Ø´Ø§Ø· Ù…ØªÙˆØ³Ø·</span>
+        </div>
+        <span class="plan-btn">Ø¹Ø±Ø¶ Ø§Ù„Ø®Ø·Ø© â†</span>
+      </div>
+    </a>
+
+    <!-- 1600 â€” FEATURED -->
+    <a class="plan-card kcal-1600 featured" href="Weight Reduction/Ø®Ø·Ø©_1600_Ø³Ø¹Ø±Ø©_Ø­Ø±Ø§Ø±ÙŠØ©.html">
+      <div class="plan-card-top">
+        <div class="plan-featured-badge">â­ Ø§Ù„Ø£ÙƒØ«Ø± ØªÙˆØ§Ø²Ù†Ø§Ù‹</div>
+        <div class="plan-kcal">1600</div>
+        <div class="plan-kcal-unit">Ø³Ø¹Ø±Ø© Ø­Ø±Ø§Ø±ÙŠØ© / ÙŠÙˆÙ…</div>
+      </div>
+      <div class="plan-card-body">
+        <div class="plan-name">Ø®Ø·Ø© Ø§Ù„ØªÙˆØ§Ø²Ù† Ø§Ù„ØºØ°Ø§Ø¦ÙŠ</div>
+        <p class="plan-desc">Ø§Ù„Ø®Ø·Ø© Ø§Ù„Ø£Ù…Ø«Ù„ Ù„Ù…Ø¹Ø¸Ù… Ø§Ù„Ø£ÙØ±Ø§Ø¯. ØªÙˆØ§Ø²Ù† Ù…Ø«Ø§Ù„ÙŠ Ø¨ÙŠÙ† Ø§Ù„Ø¹Ø¬Ø² Ø§Ù„Ø­Ø±Ø§Ø±ÙŠ ÙˆØªÙˆÙÙŠØ± Ø§Ù„Ø·Ø§Ù‚Ø© Ø§Ù„ÙƒØ§ÙÙŠØ© Ù„Ù„Ù†Ø´Ø§Ø· Ø§Ù„ÙŠÙˆÙ…ÙŠ.</p>
+        <div class="plan-tags">
+          <span class="plan-tag gold">Ø§Ù„Ø£Ù†Ø³Ø¨ Ù„Ù„Ø£ØºÙ„Ø¨ÙŠØ©</span>
+          <span class="plan-tag">Ø·Ø§Ù‚Ø© Ù…Ø³ØªØ¯Ø§Ù…Ø©</span>
+        </div>
+        <span class="plan-btn accent">Ø¹Ø±Ø¶ Ø§Ù„Ø®Ø·Ø© â†</span>
+      </div>
+    </a>
+
+    <!-- 1800 -->
+    <a class="plan-card kcal-1800" href="Weight Reduction/Ø®Ø·Ø©_1800_Ø³Ø¹Ø±Ø©_Ø­Ø±Ø§Ø±ÙŠØ©.html">
+      <div class="plan-card-top">
+        <div class="plan-kcal">1800</div>
+        <div class="plan-kcal-unit">Ø³Ø¹Ø±Ø© Ø­Ø±Ø§Ø±ÙŠØ© / ÙŠÙˆÙ…</div>
+      </div>
+      <div class="plan-card-body">
+        <div class="plan-name">Ø®Ø·Ø© Ø§Ù„Ø±Ø¬Ø§Ù„ ÙˆØ§Ù„Ù†Ø´ÙŠØ·ÙŠÙ†</div>
+        <p class="plan-desc">Ù…Ø«Ø§Ù„ÙŠØ© Ù„Ù„Ø±Ø¬Ø§Ù„ Ø°ÙˆÙŠ Ø§Ù„Ù†Ø´Ø§Ø· Ø§Ù„Ù…ØªÙˆØ³Ø· ÙˆØ§Ù„Ù†Ø³Ø§Ø¡ Ø§Ù„Ø£ÙƒØ«Ø± Ù†Ø´Ø§Ø·Ø§Ù‹. ØªØ­Ø§ÙØ¸ Ø¹Ù„Ù‰ Ø§Ù„ÙƒØªÙ„Ø© Ø§Ù„Ø¹Ø¶Ù„ÙŠØ© Ø£Ø«Ù†Ø§Ø¡ ÙÙ‚Ø¯Ø§Ù† Ø§Ù„Ø¯Ù‡ÙˆÙ†.</p>
+        <div class="plan-tags">
+          <span class="plan-tag">Ø­ÙØ§Ø¸ Ø¹Ù„Ù‰ Ø§Ù„Ø¹Ø¶Ù„Ø§Øª</span>
+          <span class="plan-tag">Ù†Ø´Ø§Ø· Ø¹Ø§Ù„Ù</span>
+        </div>
+        <span class="plan-btn">Ø¹Ø±Ø¶ Ø§Ù„Ø®Ø·Ø© â†</span>
+      </div>
+    </a>
+
+    <!-- 2000 -->
+    <a class="plan-card kcal-2000" href="Weight Reduction/Ø®Ø·Ø©_2000_Ø³Ø¹Ø±Ø©_Ø­Ø±Ø§Ø±ÙŠØ©.html">
+      <div class="plan-card-top">
+        <div class="plan-kcal">2000</div>
+        <div class="plan-kcal-unit">Ø³Ø¹Ø±Ø© Ø­Ø±Ø§Ø±ÙŠØ© / ÙŠÙˆÙ…</div>
+      </div>
+      <div class="plan-card-body">
+        <div class="plan-name">Ø®Ø·Ø© Ø§Ù„ØµÙŠØ§Ù†Ø© Ø§Ù„ØµØ­ÙŠØ©</div>
+        <p class="plan-desc">Ù„Ù„Ø±Ø¬Ø§Ù„ Ø°ÙˆÙŠ Ø§Ù„Ù†Ø´Ø§Ø· Ø§Ù„Ø¹Ø§Ù„ÙŠ ÙˆØ§Ù„Ø±ÙŠØ§Ø¶ÙŠÙŠÙ†. ØªØ¯Ø¹Ù… Ø§Ù„Ø£Ø¯Ø§Ø¡ Ø§Ù„Ø¨Ø¯Ù†ÙŠ ÙˆØªØ­Ø§ÙØ¸ Ø¹Ù„Ù‰ ÙˆØ²Ù† ØµØ­ÙŠ Ø¹Ù„Ù‰ Ø§Ù„Ù…Ø¯Ù‰ Ø§Ù„Ø·ÙˆÙŠÙ„.</p>
+        <div class="plan-tags">
+          <span class="plan-tag">Ø£Ø¯Ø§Ø¡ Ø±ÙŠØ§Ø¶ÙŠ</span>
+          <span class="plan-tag">Ø±Ø¬Ø§Ù„ Ù†Ø´ÙŠØ·ÙˆÙ†</span>
+        </div>
+        <span class="plan-btn">Ø¹Ø±Ø¶ Ø§Ù„Ø®Ø·Ø© â†</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• COMPARISON TABLE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="compare-section">
+  <div class="section-header" style="padding-top:0; padding-bottom: 40px;">
+    <p class="section-eyebrow">Ù…Ù‚Ø§Ø±Ù†Ø© Ø§Ù„Ø®Ø·Ø·</p>
+    <h2 class="section-title">Ù†Ø¸Ø±Ø© Ø´Ø§Ù…Ù„Ø© Ø¹Ù„Ù‰ Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø®Ø·Ø·</h2>
+    <p class="section-desc">Ø§Ø®ØªØ± Ø§Ù„Ø®Ø·Ø© Ø§Ù„ØªÙŠ ØªØªÙ†Ø§Ø³Ø¨ Ù…Ø¹ Ø§Ø­ØªÙŠØ§Ø¬Ø§ØªÙƒ Ø§Ù„ÙŠÙˆÙ…ÙŠØ© ÙˆÙ…Ø³ØªÙˆÙ‰ Ù†Ø´Ø§Ø·Ùƒ Ø§Ù„Ø¨Ø¯Ù†ÙŠ</p>
+  </div>
+
+  <div class="compare-table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Ø§Ù„Ø®ØµØ§Ø¦Øµ</th>
+          <th>Ù¡Ù¢Ù Ù  Ø³Ø¹Ø±Ø©</th>
+          <th>Ù¡Ù¤Ù Ù  Ø³Ø¹Ø±Ø©</th>
+          <th>Ù¡Ù¦Ù Ù  Ø³Ø¹Ø±Ø©</th>
+          <th>Ù¡Ù¨Ù Ù  Ø³Ø¹Ø±Ø©</th>
+          <th>Ù¢Ù Ù Ù  Ø³Ø¹Ø±Ø©</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label">Ø§Ù„Ø¹Ø¬Ø² Ø§Ù„Ø­Ø±Ø§Ø±ÙŠ Ø§Ù„ÙŠÙˆÙ…ÙŠ*</td>
+          <td><span class="val-num">Ù¨Ù Ù â€“Ù¡Ù Ù Ù </span><br><span class="val-text">Ø³Ø¹Ø±Ø©</span></td>
+          <td><span class="val-num">Ù¦Ù Ù â€“Ù¨Ù Ù </span><br><span class="val-text">Ø³Ø¹Ø±Ø©</span></td>
+          <td><span class="val-num">Ù¤Ù Ù â€“Ù¦Ù Ù </span><br><span class="val-text">Ø³Ø¹Ø±Ø©</span></td>
+          <td><span class="val-num">Ù¢Ù Ù â€“Ù¤Ù Ù </span><br><span class="val-text">Ø³Ø¹Ø±Ø©</span></td>
+          <td><span class="val-num">Ù â€“Ù¢Ù Ù </span><br><span class="val-text">Ø³Ø¹Ø±Ø©</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">ÙÙ‚Ø¯Ø§Ù† Ø§Ù„ÙˆØ²Ù† Ø§Ù„Ù…ØªÙˆÙ‚Ø¹ Ø£Ø³Ø¨ÙˆØ¹ÙŠØ§Ù‹</td>
+          <td><span class="val-num">Ù .Ù§â€“Ù¡ ÙƒØº</span></td>
+          <td><span class="val-num">Ù .Ù¥â€“Ù .Ù§ ÙƒØº</span></td>
+          <td><span class="val-num">Ù .Ù¤â€“Ù .Ù¥ ÙƒØº</span></td>
+          <td><span class="val-num">Ù .Ù¢â€“Ù .Ù£ ÙƒØº</span></td>
+          <td><span class="val-num">ØµÙŠØ§Ù†Ø©</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">Ø§Ù„ÙØ¦Ø© Ø§Ù„Ù…Ø³ØªÙ‡Ø¯ÙØ©</td>
+          <td class="val-text">Ù†Ø³Ø§Ø¡ â€¢ Ù†Ø´Ø§Ø· Ù…Ù†Ø®ÙØ¶</td>
+          <td class="val-text">Ù†Ø³Ø§Ø¡ â€¢ Ù†Ø´Ø§Ø· Ù…ØªÙˆØ³Ø·</td>
+          <td class="val-text">Ù…Ø¹Ø¸Ù… Ø§Ù„ÙØ¦Ø§Øª Ø§Ù„Ø¹Ù…Ø±ÙŠØ©</td>
+          <td class="val-text">Ø±Ø¬Ø§Ù„ â€¢ Ù†Ø´Ø§Ø· Ù…ØªÙˆØ³Ø·</td>
+          <td class="val-text">Ø±Ø¬Ø§Ù„ â€¢ Ù†Ø´Ø§Ø· Ø¹Ø§Ù„Ù</td>
+        </tr>
+        <tr>
+          <td class="row-label">Ø§Ù„ÙˆØ¬Ø¨Ø§Øª Ø§Ù„ÙŠÙˆÙ…ÙŠØ©</td>
+          <td class="val-text">Ù¤ ÙˆØ¬Ø¨Ø§Øª</td>
+          <td class="val-text">Ù¤ ÙˆØ¬Ø¨Ø§Øª</td>
+          <td class="val-text">Ù¤ ÙˆØ¬Ø¨Ø§Øª</td>
+          <td class="val-text">Ù¤ ÙˆØ¬Ø¨Ø§Øª</td>
+          <td class="val-text">Ù¤ ÙˆØ¬Ø¨Ø§Øª</td>
+        </tr>
+        <tr>
+          <td class="row-label">Ø§Ù„Ø¨Ø±ÙˆØªÙŠÙ† Ø§Ù„ÙŠÙˆÙ…ÙŠ (ØªÙ‚Ø±ÙŠØ¨Ø§Ù‹)</td>
+          <td><span class="val-num">Ù©Ù â€“Ù¡Ù Ù  Øº</span></td>
+          <td><span class="val-num">Ù¡Ù Ù â€“Ù¡Ù¡Ù  Øº</span></td>
+          <td><span class="val-num">Ù¡Ù¡Ù â€“Ù¡Ù¢Ù  Øº</span></td>
+          <td><span class="val-num">Ù¡Ù¢Ù â€“Ù¡Ù£Ù¥ Øº</span></td>
+          <td><span class="val-num">Ù¡Ù£Ù¥â€“Ù¡Ù¥Ù  Øº</span></td>
+        </tr>
+        <tr>
+          <td class="row-label">Ù…Ø³ØªÙˆÙ‰ Ø§Ù„ØµØ¹ÙˆØ¨Ø©</td>
+          <td class="val-text">ğŸ”´ Ù…Ø±ØªÙØ¹</td>
+          <td class="val-text">ğŸŸ  Ù…ØªÙˆØ³Ø·-Ø¹Ø§Ù„Ù</td>
+          <td class="val-text">ğŸŸ¡ Ù…ØªÙˆØ³Ø·</td>
+          <td class="val-text">ğŸŸ¢ Ù…Ù†Ø®ÙØ¶-Ù…ØªÙˆØ³Ø·</td>
+          <td class="val-text">ğŸŸ¢ Ù…Ù†Ø®ÙØ¶</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top: 16px; font-size: 0.95rem; color: var(--text-3); text-align: center;">
+    * Ø§Ù„Ø¹Ø¬Ø² Ø§Ù„Ø­Ø±Ø§Ø±ÙŠ Ù…Ø­Ø³ÙˆØ¨ ØªÙ‚Ø±ÙŠØ¨ÙŠØ§Ù‹ Ø¨Ø§Ù„Ù…Ù‚Ø§Ø±Ù†Ø© Ù…Ø¹ Ù…Ø¹Ø¯Ù„ Ø§Ù„Ø£ÙŠØ¶ Ø§Ù„Ø£Ø³Ø§Ø³ÙŠ Ù„Ø´Ø®Øµ Ù…ØªÙˆØ³Ø· Ø§Ù„Ù‚ÙˆØ§Ù…
+  </p>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SCIENCE GUIDE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="guide-section">
+  <div class="guide-inner">
+    <div class="guide-header">
+      <p class="guide-eyebrow">Ø§Ù„Ø£Ø³Ø³ Ø§Ù„Ø¹Ù„Ù…ÙŠØ©</p>
+      <h2 class="guide-title">Ù…Ø¨Ø§Ø¯Ø¦ Ø§Ù„ØªØºØ°ÙŠØ© Ø§Ù„ØµØ­ÙŠØ© ÙÙŠ Ø®Ø·Ø·Ù†Ø§</h2>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <span class="gc-icon">ğŸŒ¾</span>
+        <p class="gc-title">Ø§Ù„ÙƒØ±Ø¨ÙˆÙ‡ÙŠØ¯Ø±Ø§Ø
+¶)öa6av.v`¶+ö*OÜ‚ˆÛ\ÜÏH™ØËX›ÙH¶+¶*6,ˆ6(ö,öav,v#6,v,ˆ6*6,öav*¶b¶#6b6-6b6`v)öa‹ˆ6*¶+6a¶dv*6)öa6,ö`ö,vb¶)ö*ˆ6)öa6*6,öb¶-ö*H6b6)öa6av`ö,v,v*H6a6)ö,ö*¶`¶,v)ö,H6av,ö*¶b6bH6)öa6,ö`ö,H6`vbˆ6)öa6+öaKÜ‚ˆÙ]‚ˆ]ˆÛ\ÜÏH™İZYKXØ\™‚ˆÜ[ˆÛ\ÜÏH™ØËZXÛÛˆ¼'éiÜÜ[‚ˆÛ\ÜÏH™ØË]]H¶)öa6(öa6b¶)ö`H6)öa6.¶,6)ö)¶b¶*OÜ‚ˆÛ\ÜÏH™ØËX›ÙH¶h¶ix $öhöh6.¶,v)öav)öbÈ6b¶b6avb¶)öbÈ6avaˆ6)öa6+¶-¶,vb6)ö*ˆ6b6)öa6`vb6)ö`öaÈ6b6)öa6*6`¶b6a6b¶)ö­˜MŠ­‹‹-˜­‹"Š}˜M‹MŠ‹’˜Šı‹˜R‹]ŠİŠ’Š}˜MŠÍ˜}Š}‹"Š}˜M˜}‹m˜]˜¢ãÂ÷à¢ÂöF—cà¢ÆF—b6Æ73Ò&wV–FRÖ6&B#à¢Ç7â6Æ73Ò&v2Ö–6öâ#ï	ù*sÂ÷7ãà¢Ç6Æ73Ò&v2×F—FÆR#íŠ}˜MŠ­‹‹}˜­Š‚Š}˜M˜=Š}˜˜£Â÷à¢Ç6Æ73Ò&v2Ö&öG’#íš(	=ššŠ=˜=˜Š}Š‚˜]˜bŠ}˜M˜]Š}Š˜­˜˜]˜­Š}˜²‹m‹˜‹˜­Š’˜MŠı‹˜RŠ}˜MŠ=˜­‹mˆÂŠíŠ}‹]Š˜²˜˜¢˜]˜mŠ}ŠâŠ}˜M‹˜­Š}‹bŠ}˜MŠÍŠ}˜˜Š}˜MŠİŠ}‹ãÂ÷à¢ÂöF—cà¢ÆF—b6Æ73Ò&wV–FRÖ6&B#à¢Ç7â6Æ73Ò&v2Ö–6öâ#ï	ú¹#Â÷7ãà¢Ç6Æ73Ò&v2×F—FÆR#íŠ}˜MŠı˜}˜˜bŠ}˜M‹]Šİ˜­Š“Â÷à¢Ç6Æ73Ò&v2Ö&öG’#í‹-˜­Š¢Š}˜M‹-˜­Š­˜˜bŠ}˜MŠ˜=‹Š}˜M˜]˜]Š­Š}‹"˜}˜‚Š}˜M˜]‹]Šı‹Š}˜M‹Šm˜­‹=˜¢Š}˜M˜]˜‹]˜’Š˜râ˜­Šı‹˜R‹]ŠİŠ’Š}˜M˜-˜MŠ‚˜˜­‹-˜­Šò˜]˜bŠ}˜MŠ]Šİ‹=Š}‹2ŠŠ}˜M‹MŠ‹’ãÂ÷à¢ÂöF—cà¢ÆF—b6Æ73Ò&wV–FRÖ6&B#à¢Ç7â6Æ73Ò&v2Ö–6öâ#ï	úZ“Â÷7ãà¢Ç6Æ73Ò&v2×F—FÆR#íŠ}˜MŠ‹˜Š­˜­˜bŠ}˜M˜=Š}˜˜£Â÷à¢Ç6Æ73Ò&v2Ö&öG’#íŠıŠÍŠ}ŠÍˆÂ‹=˜]˜=ˆÂŠ˜­‹mˆÂ˜Š˜-˜˜M˜­Š}Š¢âŠ}˜MŠ‹˜Š­˜­˜bŠ}˜M˜=Š}˜˜¢˜­ŠİŠ}˜‹‚‹˜M˜’Š}˜M˜=Š­˜MŠ’Š}˜M‹‹m˜M˜­Š’Š=Š½˜mŠ}Š˜˜-ŠıŠ}˜bŠ}˜MŠı˜}˜˜bãÂ÷à¢ÂöF—cà¢ÆF—b6Æ73Ò&wV–FRÖ6&B#à¢Ç7â6Æ73Ò&v2Ö–6öâ#ï	øø3Â÷7ãà¢Ç6Æ73Ò&v2×F—FÆR#íŠ}˜M˜m‹MŠ}‹rŠ}˜MŠŠı˜m˜£Â÷à¢Ç6Æ73Ò&v2Ö&öG’#íš=š(	=šmšŠı˜-˜­˜-Š’˜­˜˜]˜­Š}˜²˜]˜bŠ}˜M˜m‹MŠ}‹rŠ}˜M˜]‹Š­Šı˜BŠ­‹mŠ}‹˜˜mŠ­Š}ŠmŠÂŠ}˜MŠí‹}Š’˜Š­ŠİŠ}˜‹‚‹˜M˜’˜]‹Šı˜BŠ}˜MŠ=˜­‹bŠ}˜MŠ=‹=Š}‹=˜¢ãÂ÷à¢ÂöF—cà¢ÆF—b6Æ73Ò&wV–FRÖ6&B#à¢Ç7â6Æ73Ò&v2Ö–6öâ#ï	ùHCÂ÷7ãà¢Ç6Æ73Ò&v2×F—FÆR#í˜]‹˜˜mŠ’Š}˜MŠí‹}Š“Â÷à¢Ç6Æ73Ò&v2Ö&öG’#í˜­˜]˜=˜bŠ­ŠŠı˜­˜BŠ}˜M˜ŠÍŠŠ}Š¢Š˜­˜bŠ}˜MŠ=˜­Š}˜RŠŠİ‹˜­ŠˆÂ‹M‹‹rŠ}˜MŠ­˜=Š}˜ŠBŠ}˜MŠİ‹Š}‹˜¢Š˜­˜bŠ}˜M˜ŠÍŠŠ­˜­˜bŠ}˜M˜]Š­ŠŠ}Šı˜MŠ­˜­˜bãÂ÷à¢ÂöF—cà¢ÆF—b6Æ73Ò&wV–FRÖ6&B#à¢Ç7â6Æ73Ò&v2Ö–6öâ#ï	úx#Â÷7ãà¢Ç6Æ73Ò&v2×F—FÆR#íŠ­˜-˜M˜­˜BŠ}˜M‹]˜Šı˜­˜˜SÂ÷à¢Ç6Æ73Ò&v2Ö&öG’#í˜­˜ı‹=Š­‹Š}‹b‹˜bŠ}˜M˜]˜MŠÒŠ}˜M‹-Š}ŠmŠòŠŠ}˜MŠ˜}Š}‹Š}€«bŸfbßb£f+bçf+b¤ƒf#bŸfff+ff#fƒf#bŸfb¯f#fƒffb·fbŸbàƒbçff$ƒbÛbëbÜƒbŸfb¿fƒbŸfbßb£f+bçf(¸ğ½Àø(€€€€€€ğ½‘¥Øø(€€€€ğ½‘¥Øø(€€ğ½‘¥Øø(ğ½Í•Ñ¥½¸ø((ğ„´´ƒŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠV@DƒŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠVCŠV@€´´ø(ñÍ•Ñ¥½¸±…ÍÌô‰™…ÄµÍ•Ñ¥½¸ˆù¸ˆ
+  <div class="faq-inner">
+    <div class="section-header" style="padding-right:0; padding-left:0; text-align:right; max-width:100%;">
+      <p class="section-eyebrow">Ø£Ø³Ø¦Ù„Ø© Ø´Ø§Ø¦Ø¹Ø©</p>
+      <h2 class="section-title">ÙƒÙ„ Ù…Ø§ ØªØ­ØªØ§Ø¬ Ù…Ø¹Ø±ÙØªÙ‡</h2>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <div class="faq-q-icon">ØŸ</div>
+        ÙƒÙŠÙ Ø£Ø®ØªØ§Ø± Ø§Ù„Ø®Ø·Ø© Ø§Ù„Ù…Ù†Ø§Ø³Ø¨Ø© Ù„ÙŠØŸ
+      </div>
+      <p class="faq-a">ÙŠØ¹ØªÙ…Ø¯ Ø§Ù„Ø§Ø®ØªÙŠØ§Ø± Ø¹Ù„Ù‰ ÙˆØ²Ù†Ùƒ Ø§Ù„Ø­Ø§Ù„ÙŠØŒ Ø¬Ù†Ø³ÙƒØŒ Ù…Ø³ØªÙˆÙ‰ Ù†Ø´Ø§Ø·Ùƒ Ø§Ù„Ø¨Ø¯Ù†ÙŠØŒ ÙˆÙ‡Ø¯Ù ÙÙ‚Ø¯Ø§Ù† Ø§Ù„ÙˆØ²Ù†. Ø¨Ø´ÙƒÙ„ Ø¹Ø§Ù…: Ø§Ù„Ù†Ø³Ø§Ø¡ Ø°ÙˆØ§Øª Ø§Ù„Ù†Ø´Ø§Ø· Ø§Ù„Ù…Ù†Ø®ÙØ¶ ÙŠØ¨Ø¯Ø£Ù† Ù…Ù† Ù¡Ù¢Ù Ù â€“Ù¡Ù¤Ù Ù  Ø³Ø¹Ø±Ø©ØŒ ÙˆØ§Ù„Ø±Ø¬Ø§Ù„ Ø°ÙˆÙˆ Ø§Ù„Ù†Ø´Ø§Ø· Ø§Ù„Ù…ØªÙˆØ³Ø· Ù…Ù† Ù¡Ù¦Ù Ù â€“Ù¡Ù¨Ù Ù  Ø³Ø¹Ø±Ø©. Ø§Ø³ØªØ´Ø± Ø·Ø¨ÙŠØ¨Ùƒ Ø£Ùˆ Ø§Ø®ØªØµØ§ØµÙŠ Ø§Ù„ØªØºØ°ÙŠØ© Ù„Ù„Ø­ØµÙˆÙ„ Ø¹Ù„Ù‰ ØªÙ‚ÙŠÙŠÙ… Ø¯Ù‚ÙŠÙ‚.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <div class="faq-q-icon">ØŸ</div>
+        Ù‡Ù„ ÙŠÙ…ÙƒÙ†Ù†ÙŠ ØªØ¨Ø¯ÙŠÙ„ Ø§Ù„ÙˆØ¬Ø¨Ø§Øª Ø¨ÙŠÙ† Ø§Ù„Ø£ÙŠØ§Ù…ØŸ
+      </div>
+      <p class="faq-a">Ù†Ø¹Ù…ØŒ Ø¨Ø´Ø±Ø· Ø§Ù„ØªÙƒØ§ÙØ¤ Ø§Ù„Ø­Ø±Ø§Ø±ÙŠ. Ù…Ø«Ù„Ø§Ù‹ ÙŠÙ…ÙƒÙ† ØªØ¨Ø¯ÙŠÙ„ ÙØ·ÙˆØ± Ø§Ù„ÙŠÙˆÙ… Ø§Ù„Ø£ÙˆÙ„ Ø¨ÙØ·ÙˆØ± Ø§Ù„ÙŠÙˆÙ… Ø§Ù„Ø«Ø§Ù„Ø« Ø¶Ù…Ù† Ù†ÙØ³ Ø§Ù„Ø®Ø·Ø©ØŒ Ù„ÙƒÙ† ØªØ£ÙƒØ¯ Ø£Ù† Ø§Ù„Ø³Ø¹Ø±Ø§Øª Ù…ØªÙ‚Ø§Ø±Ø¨Ø©.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <div class="faq-q-icon">ØŸ</div>
+        Ù…Ø§ Ù…Ø¯Ø© Ø§Ù„Ø§Ù„ØªØ²Ø§Ù… Ø§Ù„Ù…Ø«Ø§Ù„ÙŠØ© Ø¨Ø§Ù„Ø®Ø·Ø©ØŸ
+      </div>
+      <p class="faq-a">Ø§Ù„Ø®Ø·Ø© Ù…ØµÙ…Ù…Ø© Ù„Ø³Ø¨Ø¹Ø© Ø£ÙŠØ§Ù… Ù‚Ø§Ø¨Ù„Ø© Ù„Ù„ØªÙƒØ±Ø§Ø±. ÙŠÙÙ†ØµØ­ Ø¨Ø§Ù„Ø§Ø³ØªÙ…Ø±Ø§Ø± Ù„Ù…Ø¯Ø© Ù¤â€“Ù¨ Ø£Ø³Ø§Ø¨ÙŠØ¹ Ù…ØªÙˆØ§ØµÙ„Ø© Ù„Ù„Ø­ØµÙˆÙ„ Ø¹Ù„Ù‰ Ù†ØªØ§Ø¦Ø¬ Ù…Ù„Ù…ÙˆØ³Ø© ÙˆÙ‚Ø§Ø¨Ù„Ø© Ù„Ù„Ù‚ÙŠØ§Ø³. Ø±Ø§Ø¬Ø¹ Ø§Ø®ØªØµØ§ØµÙŠ Ø§Ù„ØªØºØ°ÙŠØ© Ø¨Ø¹Ø¯ ÙƒÙ„ Ù¤ Ø£Ø³Ø§Ø¨ÙŠØ¹ Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ø®Ø·Ø©.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <div class="faq-q-icon">ØŸ</div>
+        Ù‡Ù„ Ø§Ù„Ø®Ø·Ø· Ù…Ù†Ø§Ø³Ø¨Ø© Ù„Ù…Ù† ÙŠØ¹Ø§Ù†ÙŠ Ù…Ù† Ø£Ù…Ø±Ø§Ø¶ Ù…Ø²Ù…Ù†Ø©ØŸ
+      </div>
+      <p class="faq-a">Ù‡Ø°Ù‡ Ø§Ù„Ø®Ø·Ø· Ù…ÙØµÙ…Ù…Ø© Ù„Ù„Ø£Ø´Ø®Ø§Øµ Ø§Ù„Ø£ØµØ­Ø§Ø¡ Ø§Ù„Ø°ÙŠÙ† ÙŠØ±ØºØ¨ÙˆÙ† ÙÙŠ Ø¥Ø¯Ø§Ø±Ø© ÙˆØ²Ù†Ù‡Ù…. Ù…Ù† ÙŠØ¹Ø§Ù†ÙŠ Ù…Ù† Ø§Ù„Ø³ÙƒØ±ÙŠ Ø£Ùˆ Ø£Ù…Ø±Ø§Ø¶ Ø§Ù„ÙƒÙ„Ù‰ Ø£Ùˆ Ø§Ù„Ù‚Ù„Ø¨ Ø£Ùˆ ØºÙŠØ±Ù‡Ø§ Ù…Ù† Ø§Ù„Ø­Ø§Ù„Ø§Ø
+¶)öa6-v+vb¶*H6b¶+6*6)ö,ö*¶-6)ö,v*H6)öa6-ö*6b¶*6`¶*6a6)ö*¶*6)ö.H6(öbˆ6+¶-ö*H6.¶,6)ö)¶b¶*KÜ‚ˆÙ]‚‚ˆ]ˆÛ\ÜÏH™˜\KZ][H‚ˆ]ˆÛ\ÜÏH™˜\K\H‚ˆ]ˆÛ\ÜÏH™˜\K\KZXÛÛˆ¶'ÏÙ]‚ˆ6`öb¶`H6b¶cö`¶)ö,È6)öa6-ö.v)öaH6*6)öa6b6+v+ö)ö­Š}˜M˜]˜m‹-˜M˜­Š‰ğ¢ÂöF—cà¢Ç6Æ73Ò&fÖ#íŠ}˜M˜]˜M‹˜-Š’Š}˜M‹]‹­˜­‹Š’ÒšR˜]˜MˆÂŠ}˜M˜]˜M‹˜-Š’Š}˜M˜=Š˜­‹Š’ÒššR˜]˜MˆÂŠ}˜M˜=˜Š‚Òš-šMš˜]˜Bâ˜=˜BŠí‹}Š’Š­ŠİŠ­˜˜¢‹˜M˜’Š}˜M˜=˜]˜­Š’ŠŠ}˜M˜ŠİŠıŠ­˜­˜bŠ}˜M˜]˜m‹-˜M˜­Š’˜Š}˜M˜-˜­Š}‹=˜­Š’’˜M‹=˜}˜˜MŠ’Š}˜MŠ­‹}Š˜­˜"Šı˜˜bŠ}˜MŠİŠ}ŠÍŠ’˜M˜]˜­‹-Š}˜b˜˜¢˜=˜B˜]‹Š’ãÂ÷à¢ÂöF—cà¢ÂöF—cà£Â÷6V7F–öãà £ÂÒÒ)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)YdôõDU")Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)Y)YÒÓà£Æfö÷FW"6Æ73Ò&fö÷FW"#à¢ÆF—b6Æ73Ò&fö÷FW"ÖÆövò#ï	øËò‹˜­Š}ŠıŠ’Š}˜MŠ­‹­‹˜­Š“ÂöF—cà¢Ç6Æ73Ò&fö÷FW"×7V"#à¢Š}˜M‹˜­Š}‹mˆÂŠ}˜M˜]˜]˜M˜=Š’Š}˜M‹‹Š˜­Š’Š}˜M‹=‹˜Šı˜­Š“Æ'#à¢Š­‹­‹˜­Š’‹]Šİ˜­Š’+rŠİ˜­Š}Š’Š=˜‹m˜@¢Â÷à¢ÆF—b6Æ73Ò&fö÷FW"ÖF—f–FW"#ãÂöF—cà¢Ç6Æ73Ò&fö÷FW"ÖF—66Æ–ÖW"#à¢˜}‹˜rŠ}˜MŠí‹}‹rŠ}˜M‹­‹Š}Šm˜­Š’˜M˜MŠ=‹­‹Š}‹bŠ}˜MŠ­Š½˜-˜­˜˜­Š’˜Š}˜MŠ]‹‹MŠ}Šı˜­Š’˜˜-‹râ˜MŠrŠ­˜ı‹­˜m˜¢‹˜bŠ}˜MŠ}‹=Š­‹MŠ}‹Š’Š}˜M‹}Š˜­Š’Š}˜M˜]Š­Ší‹]‹]Š’â˜­˜ı˜m‹]ŠÒŠıŠ}Šm˜]Š}˜²Š˜]‹Š}ŠÍ‹Š’‹}Š˜­Š‚Š=˜‚Š}ŠíŠ­‹]Š}‹]˜¢Š­‹­‹˜­Š’˜]‹Š­˜]Šø¯
