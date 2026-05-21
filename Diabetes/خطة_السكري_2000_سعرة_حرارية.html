@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خطة السكري — 2000 سعرة حرارية</title>
+<style>
+  @font-face { font-family:'AmAlIbil'; src:local('The Year of The Camel'),local('TheYearOfTheCamel'),local('Am Al Ibil'); font-display:swap; }
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+  :root {
+    --bg:#F5F5F7; --card:#ffffff; --cover-bg:#07120A;
+    --accent:#1A4B8C; --accent-mid:#2E6EB5; --accent-glow:rgba(26,75,140,0.12);
+    --gold:#C8963C;
+    --text-1:#1d1d1f; --text-2:#6e6e73; --text-3:#aeaeb2; --border:#e8e8ed;
+    --r-sm:10px; --r-md:16px; --r-lg:24px;
+    --shadow-1:0 2px 8px rgba(0,0,0,0.05); --shadow-2:0 4px 24px rgba(0,0,0,0.08); --shadow-3:0 12px 48px rgba(0,0,0,0.13);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'AmAlIbil','Tajawal',-apple-system,Arial,sans-serif;background:var(--bg);color:var(--text-1);direction:rtl;-webkit-font-smoothing:antialiased;}
+  .cover{background:var(--cover-bg);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 48px;page-break-after:always;position:relative;overflow:hidden;}
+  .cover::before{content:'';position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(26,75,140,0.22) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+  .cover::after{content:'';position:absolute;bottom:80px;left:50%;transform:translateX(-50%);width:40px;height:2px;background:var(--gold);border-radius:1px;}
+  .cover-inner{position:relative;z-index:1;}
+  .cover-eyebrow{font-size:1.6rem;font-weight:400;letter-spacing:3px;color:#D4AA6A;margin-bottom:28px;}
+  .cover-num{font-size:clamp(8rem,22vw,14rem);font-weight:800;color:#fff;line-height:1;letter-spacing:-4px;}
+  .cover-unit{font-size:2.2rem;font-weight:300;color:rgba(255,255,255,0.55);letter-spacing:1px;margin-top:18px;margin-bottom:44px;}
+  .cover-tagline{font-size:2rem;font-weight:300;color:rgba(255,255,255,0.78);margin-bottom:48px;line-height:1.65;}
+  .cover-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
+  .cover-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.16);border-radius:100px;padding:12px 28px;font-size:1.25rem;font-weight:400;color:rgba(255,255,255,0.68);background:rgba(255,255,255,0.06);}
+  .container{max-width:1000px;margin:0 auto;padding:64px 32px 80px;}
+  .guide-wrap{margin-bottom:72px;}
+  .guide-section-label{font-size:1.05rem;font-weight:600;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+  .guide-headline{font-size:2.6rem;font-weight:700;color:var(--text-1);margin-bottom:24px;line-height:1.2;}
+  .guide-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .guide-card{background:var(--card);border-radius:var(--r-lg);padding:26px 22px;box-shadow:var(--shadow-1);border:1px solid var(--border);transition:box-shadow 0.2s,transform 0.2s;}
+  .guide-card:hover{box-shadow:var(--shadow-2);transform:translateY(-2px);}
+  .gc-icon{font-size:2.2rem;margin-bottom:18px;display:block;line-height:1;}
+  .gc-title{font-size:1.35rem;font-weight:700;color:var(--text-1);margin-bottom:10px;}
+  .gc-body{font-size:1.18rem;color:var(--text-2);line-height:1.75;font-weight:400;}
+  .key-bar{margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;box-shadow:var(--shadow-1);}
+  .key-bar-label{font-size:1.2rem;font-weight:600;color:var(--text-2);}
+  .key-tag{display:inline-flex;align-items:center;gap:6px;background:#F5F5F7;border-radius:100px;padding:8px 20px;font-size:1.2rem;color:var(--text-1);border:1px solid var(--border);}
+  .key-tag-sym{font-weight:700;color:var(--accent);}
+  .day-block{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-2);margin-bottom:32px;overflow:hidden;border:1px solid var(--border);break-inside:avoid;}
+  .day-cap{padding:28px 36px 24px;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:20px;}
+  .day-num-big{font-size:5.5rem;font-weight:200;color:var(--accent);line-height:1;flex-shrink:0;letter-spacing:-2px;}
+  .day-meta{flex:1;}
+  .day-title-text{font-size:2.5rem;font-weight:700;color:var(--text-1);display:block;}
+  .day-meals-preview{font-size:1.2rem;color:var(--text-3);margin-top:8px;font-weight:400;}
+  .meal-section{border-top:1px solid #f0f0f0;}
+  .meal-section:first-child{border-top:none;}
+  .meal-cap{display:flex;align-items:center;justify-content:space-between;padding:16px 36px;background:#FAFAFA;}
+  .meal-left{display:flex;align-items:center;gap:14px;}
+  .meal-ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .ico-b{background:#E3F2FD;} .ico-l{background:#E8F5E9;} .ico-s{background:#FFF3E0;} .ico-d{background:#EDE7F6;}
+  .meal-name-text{font-weight:600;font-size:1.35rem;color:var(--text-1);}
+  .meal-kcal-tag{font-size:1.15rem;font-weight:600;color:var(--accent);background:rgba(26,75,140,0.08);border:1px solid rgba(26,75,140,0.15);border-radius:100px;padding:8px 22px;white-space:nowrap;}
+  table{width:100%;border-collapse:collapse;}
+  thead th{padding:14px 36px;text-align:right;font-size:1.12rem;font-weight:600;color:var(--text-2);border-bottom:1px solid var(--border);}
+  tbody td{padding:16px 36px;font-size:1.22rem;border-bottom:1px solid #f5f5f7;line-height:1.65;color:var(--text-1);}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover td{background:#FAFAFA;}
+  .home-col{font-weight:600;color:var(--accent);font-size:1.25rem;}
+  .metric-col{color:var(--text-3);font-size:1.15rem;font-variant-numeric:tabular-nums;}
+  .print-btn{position:fixed;bottom:32px;left:32px;background:var(--text-1);color:#fff;border:none;border-radius:100px;padding:14px 28px;font-size:1rem;font-family:'AmAlIbil','Tajawal',sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.25);z-index:999;display:flex;align-items:center;gap:9px;transition:background 0.2s,transform 0.15s,box-shadow 0.15s;}
+  .print-btn:hover{background:#2c2c2e;transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,0.3);}
+  @media print{body{background:#fff;}.print-btn{display:none;}.cover{min-height:auto;page-break-after:always;}.day-block{break-inside:avoid;box-shadow:none;border:1px solid #e0e0e0;}.guide-card{box-shadow:none;border:1px solid #e0e0e0;}}
+  @page{margin:14mm 16mm;}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-inner">
+    <p class="cover-eyebrow">خطة غذائية لمرضى السكري</p>
+    <div class="cover-num">2000</div>
+    <div class="cover-unit">سعرة حرارية يومياً</div>
+    <div class="cover-tagline">
+      سبعة أيام من الوجبات المنزلية المتوازنة<br>للتحكم في سكر الدم والوزن الصحي
+    </div>
+    <div class="cover-pills">
+      <span class="cover-pill">🩸 مؤشر سكري منخفض</span>
+      <span class="cover-pill">📅 ٧ أيام</span>
+      <span class="cover-pill">🌾 ألياف عالية</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="guide-wrap">
+    <p class="guide-section-label">دليل الخطة</p>
+    <h2 class="guide-headline">إرشادات غذائية علمية لمرضى السكري</h2>
+    <div class="guide-grid">
+      <div class="guide-card"><span class="gc-icon">🩸</span><p class="gc-title">المؤشر الجلايسيمي</p><p class="gc-body">اختر الأطعمة ذات المؤشر الجلايسيمي المنخفض (أقل من 55) كالجريش والشوفان والبقوليات للحفاظ على استقرار السكر.</p></div>
+      <div class="guide-card"><span class="gc-icon">🌾</span><p class="gc-title">الكربوهيدرات الصحية</p><p class="gc-body">الجريش والرز البسمتي الأسمر والشوفان بدائل ممتازة تُبطئ امتصاص السكر وتُقلل ارتفاعه بعد الوجبة.</p></div>
+      <div class="guide-card"><span class="gc-icon">🥦</span><p class="gc-title">الألياف الغذائية</p><p class="gc-body">٣٠–٣٥ غراماً يومياً من الخضروات والبقوليات تُبطئ امتصاص الجلوكوز وتُحسّن التحكم في سكر الدم.</p></div>
+      <div class="guide-card"><span class="gc-icon">🥩</span><p class="gc-title">البروتين في كل وجبة</p><p class="gc-body">يُبطئ البروتين امتصاص الكربوهيدرات ويُقلل الارتفاع الحاد في سكر الدم بعد الأكل. احرص على مصدر بروتين في كل وجبة.</p></div>
+      <div class="guide-card"><span class="gc-icon">🫒</span><p class="gc-title">الدهون الصحية</p><p class="gc-body">زيت الزيتون والمكسرات تُحسّن حساسية الأنسولين وتُقلل الالتهاب المزمن المرتبط بمرض السكري.</p></div>
+      <div class="guide-card"><span class="gc-icon">🚫</span><p class="gc-title">لا سكر مضاف</p><p class="gc-body">لا عسل ولا سكر ولا عصائر محلاة في هذه الخطة. التمر بحد أقصى ١–٢ حبة فقط عند الضرورة.</p></div>
+      <div class="guide-card"><span class="gc-icon">🕐</span><p class="gc-title">انتظام مواعيد الوجبات</p><p class="gc-body">تناوُل الوجبات في مواعيد ثابتة يومياً يُساعد على استقرار سكر الدم ويمنع الارتفاع والانخفاض المفاجئ بين الوجبات.</p></div>
+      <div class="guide-card"><span class="gc-icon">💧</span><p class="gc-title">الترطيب الكافي</p><p class="gc-body">اشرب ٨–١٠ أكواب من الماء يومياً. الترطيب الجيد يُساعد الكلى على التخلص من السكر الزائد ويُقلل الشعور بالجوع الكاذب.</p></div>
+    </div>
+    <div class="key-bar">
+      <span class="key-bar-label">وحدات القياس</span>
+      <span class="key-tag"><span class="key-tag-sym">ملعقة صغيرة</span> = ٥ مل</span>
+      <span class="key-tag"><span class="key-tag-sym">ملعقة كبيرة</span> = ١٥ مل</span>
+      <span class="key-tag"><span class="key-tag-sym">غ</span> = غرام</span>
+      <span class="key-tag"><span class="key-tag-sym">مل</span> = مليلتر</span>
+    </div>
+  </div>
+
+
+  <!-- DAY 1 -->
+  <div class="day-block">
+    <div class="day-cap"><div class="day-num-big">١</div><div class="day-meta"><span class="day-title-text">الأحد</span><span class="day-meals-preview">فول مدمس · دجاج مع جريش · شوربة عدس</span></div></div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-b">🌅</div><span class="meal-name-text">الفطور — فول مدمس مع بيض مسلوق وخبز أسمر</span></div><span class="meal-kcal-tag">٥٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>فول مدمس مطبوخ</td><td class="home-col">كوب كامل</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>بيضتان مسلوقتان</td><td class="home-col">٢ بيضتان</td><td class="metric-col">100 غ</td></tr>
+        <tr><td>خبز أسمر (قمح كامل)</td><td class="home-col">رغيف كامل</td><td class="metric-col">60 غ</td></tr>
+        <tr><td>زيت زيتون بكر ممتاز</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>حليب قليل الدسم</td><td class="home-col">كوب كامل</td><td class="metric-col">240 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-l">☀️</div><span class="meal-name-text">الغداء — صدر دجاج مشوي مع جريش وسلطة</span></div><span class="meal-kcal-tag">٧٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>صدر دجاج مشوي (بدون جلد)</td><td class="home-col">قطعتان متوسطتان</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>جريش مطبوخ</td><td class="home-col">كوب ونصف</td><td class="metric-col">210 غ</td></tr>
+        <tr><td>سلطة خضروات كبيرة</td><td class="home-col">طبق كبير</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>زيت زيتون (للسلطة)</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>لبن قليل الدسم</td><td class="home-col">كوب كامل</td><td class="metric-col">240 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-s">🍎</div><span class="meal-name-text">الوجبة الخفيفة</span></div><span class="meal-kcal-tag">٢٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>تفاحة طازجة</td><td class="home-col">تفاحة كبيرة</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>لوز غير مملح</td><td class="home-col">١٥ حبة</td><td class="metric-col">22 غ</td></tr>
+        <tr><td>لبنة قليلة الدسم</td><td class="home-col">٢ ملعقة كبيرة</td><td class="metric-col">30 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-d">🌙</div><span class="meal-name-text">العشاء — شوربة العدس مع الخبز والزيتون</span></div><span class="meal-kcal-tag">٦٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوربة عدس أحمر</td><td class="home-col">٣ أكواب</td><td class="metric-col">550 مل</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف ونصف</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>زيتون أسود</td><td class="home-col">٨ حبات</td><td class="metric-col">40 غ</td></tr>
+        <tr><td>يوغرت قليل الدسم</td><td class="home-col">كوب كامل</td><td class="metric-col">200 غ</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+
+  <!-- DAY 2 -->
+  <div class="day-block">
+    <div class="day-cap"><div class="day-num-big">٢</div><div class="day-meta"><span class="day-title-text">الاثنين</span><span class="day-meals-preview">شوفان بالقرفة · سمك مشوي مع جريش · بيض وخضروات</span></div></div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-b">🌅</div><span class="meal-name-text">الفطور — شوفان بالحليب والقرفة واللوز</span></div><span class="meal-kcal-tag">٥٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوفان (نيئ)</td><td class="home-col">كوب كامل</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>حليب قليل الدسم</td><td class="home-col">كوبان</td><td class="metric-col">480 مل</td></tr>
+        <tr><td>قرفة مطحونة</td><td class="home-col">¼ ملعقة صغيرة</td><td class="metric-col">1 غ</td></tr>
+        <tr><td>تمرتان</td><td class="home-col">٢ حبة</td><td class="metric-col">16 غ</td></tr>
+        <tr><td>لوز غير مملح</td><td class="home-col">١٥ حبة</td><td class="metric-col">22 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-l">☀️</div><span class="meal-name-text">الغداء — سمك مشوي مع جريش وسلطة الليمون</span></div><span class="meal-kcal-tag">٧٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>سمك (هامور أو نجل) مشوي</td><td class="home-col">٢ قطعة متوسطة وكبيرة</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>جريش مطبوخ</td><td class="home-col">كوب ونصف</td><td class="metric-col">210 غ</td></tr>
+        <tr><td>سلطة خضراء مشكلة</td><td class="home-col">طبق كبير</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>زيت زيتون</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>عصير ليمون طازج</td><td class="home-col">٣ ملعقة كبيرة</td><td class="metric-col">45 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-s">🍐</div><span class="meal-name-text">الوجبة الخفيفة</span></div><span class="meal-kcal-tag">٢٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>كمثرى طازجة</td><td class="home-col">كمثرى كبيرة</td><td class="metric-col">180 غ</td></tr>
+        <tr><td>لبنة قليلة الدسم</td><td class="home-col">٤ ملعقة كبيرة</td><td class="metric-col">60 غ</td></tr>
+        <tr><td>جوز غير مملح</td><td class="home-col">٤ حبات</td><td class="metric-col">20 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-d">🌙</div><span class="meal-name-text">العشاء — بيض مسلوق مع خضروات مشوية وخبز</span></div><span class="meal-kcal-tag">٦٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>بيض مسلوق</td><td class="home-col">٤ بيضات</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>خضروات مشوية (كوسا، فلفل، بصل)</td><td class="home-col">٣ أكواب</td><td class="metric-col">300 غ</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف ونصف</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>زيت زيتون</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>يوغرت قليل الدسم</td><td class="home-col">¾ كوب</td><td class="metric-col">160 غ</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+
+  <!-- DAY 3 -->
+  <div class="day-block">
+    <div class="day-cap"><div class="day-num-big">٣</div><div class="day-meta"><span class="day-title-text">الثلاثاء</span><span class="day-meals-preview">بيض ولبنة · جريش دجاج · شوربة خضار</span></div></div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-b">🌅</div><span class="meal-name-text">الفطور — بيض مسلوق مع لبنة وزيتون وخبز أسمر</span></div><span class="meal-kcal-tag">٥٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>بيض مسلوق</td><td class="home-col">٤ بيضات</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>لبنة قليلة الدسم</td><td class="home-col">٥ ملعقة كبيرة</td><td class="metric-col">75 غ</td></tr>
+        <tr><td>زيتون أسود أو أخضر</td><td class="home-col">٨ حبات</td><td class="metric-col">40 غ</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف كامل</td><td class="metric-col">60 غ</td></tr>
+        <tr><td>شاي أخضر بدون سكر</td><td class="home-col">كوب واحد</td><td class="metric-col">240 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-l">☀️</div><span class="meal-name-text">الغداء — جريش الدجاج مع سلطة خضراء</span></div><span class="meal-kcal-tag">٧٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>قمح جريش مطبوخ</td><td class="home-col">كوب ونصف</td><td class="metric-col">210 غ</td></tr>
+        <tr><td>دجاج مطبوخ مبشور</td><td class="home-col">¾ كوب</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>مرق دجاج قليل الدهن</td><td class="home-col">½ كوب</td><td class="metric-col">120 مل</td></tr>
+        <tr><td>سلطة خضراء</td><td class="home-col">طبق كبير</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>زيت زيتون (للسلطة)</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-s">🍊</div><span class="meal-name-text">الوجبة الخفيفة</span></div><span class="meal-kcal-tag">٢٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>برتقالة طازجة</td><td class="home-col">برتقالتان متوسطتان</td><td class="metric-col">300 غ</td></tr>
+        <tr><td>لوز غير مملح</td><td class="home-col">١٥ حبة</td><td class="metric-col">22 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-d">🌙</div><span class="meal-name-text">العشاء — شوربة خضار مع دجاج ويوغرت</span></div><span class="meal-kcal-tag">٦٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوربة خضار (كوسا، جزر، طماطم)</td><td class="home-col">٣ أكواب</td><td class="metric-col">550 مل</td></tr>
+        <tr><td>دجاج مسلوق مبشور</td><td class="home-col">٦ ملعقة كبيرة</td><td class="metric-col">100 غ</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف ونصف</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>يوغرت قليل الدسم</td><td class="home-col">كوب كامل</td><td class="metric-col">200 غ</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+
+  <!-- DAY 4 -->
+  <div class="day-block">
+    <div class="day-cap"><div class="day-num-big">٤</div><div class="day-meta"><span class="day-title-text">الأربعاء</span><span class="day-meals-preview">فول وجبن · تونة مع رز أسمر · شوربة عدس</span></div></div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-b">🌅</div><span class="meal-name-text">الفطور — فول مدمس مع جبن أبيض وخبز أسمر</span></div><span class="meal-kcal-tag">٥٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>فول مدمس مطبوخ</td><td class="home-col">كوب ونصف</td><td class="metric-col">280 غ</td></tr>
+        <tr><td>جبن أبيض قليل الدسم</td><td class="home-col">قطعة متوسطة</td><td class="metric-col">50 غ</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف كامل</td><td class="metric-col">60 غ</td></tr>
+        <tr><td>زيت زيتون</td><td class="home-col">١ ملعقة صغيرة</td><td class="metric-col">5 مل</td></tr>
+        <tr><td>شاي أسود بدون سكر</td><td class="home-col">كوب واحد</td><td class="metric-col">240 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-l">☀️</div><span class="meal-name-text">الغداء — تونة مع رز بسمتي أسمر وسلطة كبيرة</span></div><span class="meal-kcal-tag">٧٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>تونة في الماء (مصفاة)</td><td class="home-col">علبتان كاملتان</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>رز بسمتي أسمر مطبوخ</td><td class="home-col">كوب ونصف</td><td class="metric-col">210 غ</td></tr>
+        <tr><td>سلطة خضراء كبيرة</td><td class="home-col">طبق كبير</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>زيت زيتون</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>عصير ليمون طازج</td><td class="home-col">٣ ملعقة كبيرة</td><td class="metric-col">45 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-s">🥒</div><span class="meal-name-text">الوجبة الخفيفة</span></div><span class="meal-kcal-tag">٢٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>خيار وفلفل ملون مقطع</td><td class="home-col">كوبان</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>لبنة قليلة الدسم</td><td class="home-col">٤ ملعقة كبيرة</td><td class="metric-col">60 غ</td></tr>
+        <tr><td>لوز غير مملح</td><td class="home-col">١٠ حبات</td><td class="metric-col">15 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-d">🌙</div><span class="meal-name-text">العشاء — شوربة العدس مع الخبز والزيتون</span></div><span class="meal-kcal-tag">٦٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوربة عدس أصفر</td><td class="home-col">٣ أكواب</td><td class="metric-col">550 مل</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف ونصف</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>زيتون</td><td class="home-col">٨ حبات</td><td class="metric-col">40 غ</td></tr>
+        <tr><td>يوغرت قليل الدسم</td><td class="home-col">كوب كامل</td><td class="metric-col">200 غ</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+
+  <!-- DAY 5 -->
+  <div class="day-block">
+    <div class="day-cap"><div class="day-num-big">٥</div><div class="day-meta"><span class="day-title-text">الخميس</span><span class="day-meals-preview">شوفان بالقرفة · لحم مع جريش · شوربة عدس وبيض</span></div></div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-b">🌅</div><span class="meal-name-text">الفطور — شوفان بالحليب والقرفة واللوز</span></div><span class="meal-kcal-tag">٥٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوفان (نيئ)</td><td class="home-col">كوب كامل</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>حليب قليل الدسم</td><td class="home-col">كوبان</td><td class="metric-col">480 مل</td></tr>
+        <tr><td>قرفة مطحونة</td><td class="home-col">¼ ملعقة صغيرة</td><td class="metric-col">1 غ</td></tr>
+        <tr><td>لوز غير مملح</td><td class="home-col">١٥ حبة</td><td class="metric-col">22 غ</td></tr>
+        <tr><td>تمرتان</td><td class="home-col">٢ حبة</td><td class="metric-col">16 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-l">☀️</div><span class="meal-name-text">الغداء — لحم مشوي قليل الدهن مع جريش وسلطة</span></div><span class="meal-kcal-tag">٧٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>لحم بقري أو ضأن مشوي (قليل الدهن)</td><td class="home-col">قطعة كبيرة</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>جريش مطبوخ</td><td class="home-col">كوب ونصف</td><td class="metric-col">210 غ</td></tr>
+        <tr><td>سلطة خضراء كبيرة</td><td class="home-col">طبق كبير</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>زيت زيتون (للسلطة)</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>عصير ليمون طازج</td><td class="home-col">٣ ملعقة كبيرة</td><td class="metric-col">45 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-s">🍎</div><span class="meal-name-text">الوجبة الخفيفة</span></div><span class="meal-kcal-tag">٢٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>تفاحة طازجة</td><td class="home-col">تفاحة كبيرة</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>لبنة قليلة الدسم</td><td class="home-col">٤ ملعقة كبيرة</td><td class="metric-col">60 غ</td></tr>
+        <tr><td>جوز غير مملح</td><td class="home-col">٣ حبات</td><td class="metric-col">15 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-d">🌙</div><span class="meal-name-text">العشاء — شوربة العدس مع بيض مسلوق وخبز</span></div><span class="meal-kcal-tag">٦٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوربة عدس أحمر</td><td class="home-col">٣ أكواب</td><td class="metric-col">500 مل</td></tr>
+        <tr><td>بيض مسلوق</td><td class="home-col">٣ بيضات</td><td class="metric-col">150 غ</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف ونصف</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>يوغرت قليل الدسم</td><td class="home-col">¾ كوب</td><td class="metric-col">160 غ</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+
+  <!-- DAY 6 -->
+  <div class="day-block">
+    <div class="day-cap"><div class="day-num-big">٦</div><div class="day-meta"><span class="day-title-text">الجمعة</span><span class="day-meals-preview">بيض مخفوق · دجاج بالفرن مع جريش · شوربة خضار ولبنة</span></div></div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-b">🌅</div><span class="meal-name-text">الفطور — بيض مخفوق مع جبن وخبز أسمر</span></div><span class="meal-kcal-tag">٥٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>بيض مخفوق</td><td class="home-col">٤ بيضات</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>جبن أبيض قليل الدسم</td><td class="home-col">قطعة متوسطة</td><td class="metric-col">45 غ</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف كامل</td><td class="metric-col">60 غ</td></tr>
+        <tr><td>زيت زيتون</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>حليب قليل الدسم</td><td class="home-col">كوب كامل</td><td class="metric-col">240 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-l">☀️</div><span class="meal-name-text">الغداء — دجاج بالفرن مع جريش وسلطة</span></div><span class="meal-kcal-tag">٧٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>دجاج بالفرن (بدون جلد)</td><td class="home-col">قطعتان متوسطتان</td><td class="metric-col">200 غ</td></tr>
+        <tr><td>جريش مطبوخ</td><td class="home-col">كوب ونصف</td><td class="metric-col">210 غ</td></tr>
+        <tr><td>سلطة خضروات مشكلة</td><td class="home-col">طبق كبير</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>زيت زيتون (للسلطة)</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>لبن قليل الدسم</td><td class="home-col">كوب كامل</td><td class="metric-col">240 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-s">🍑</div><span class="meal-name-text">الوجبة الخفيفة</span></div><span class="meal-kcal-tag">٢٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>خوخ طازج</td><td class="home-col">٣ حبة متوسطة</td><td class="metric-col">240 غ</td></tr>
+        <tr><td>لوز غير مملح</td><td class="home-col">١٢ حبة</td><td class="metric-col">18 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-d">🌙</div><span class="meal-name-text">العشاء — شوربة خضار مع لبنة وخبز أسمر</span></div><span class="meal-kcal-tag">٦٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوربة خضار مشكلة</td><td class="home-col">٣ أكواب</td><td class="metric-col">550 مل</td></tr>
+        <tr><td>لبنة قليلة الدسم</td><td class="home-col">٦ ملعقة كبيرة</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف ونصف</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>زيتون</td><td class="home-col">٨ حبات</td><td class="metric-col">40 غ</td></tr>
+        <tr><td>يوغرت قليل الدسم</td><td class="home-col">½ كوب</td><td class="metric-col">120 غ</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+
+  <!-- DAY 7 -->
+  <div class="day-block">
+    <div class="day-cap"><div class="day-num-big">٧</div><div class="day-meta"><span class="day-title-text">السبت</span><span class="day-meals-preview">شوفان بالقرفة · سمك مع رز أسمر · شوربة عدس</span></div></div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-b">🌅</div><span class="meal-name-text">الفطور — شوفان بالحليب والقرفة والجوز</span></div><span class="meal-kcal-tag">٥٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوفان (نيئ)</td><td class="home-col">كوب كامل</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>حليب قليل الدسم</td><td class="home-col">كوبان</td><td class="metric-col">480 مل</td></tr>
+        <tr><td>قرفة مطحونة</td><td class="home-col">¼ ملعقة صغيرة</td><td class="metric-col">1 غ</td></tr>
+        <tr><td>جوز غير مملح</td><td class="home-col">٥ حبات</td><td class="metric-col">25 غ</td></tr>
+        <tr><td>تمرتان</td><td class="home-col">٢ حبة</td><td class="metric-col">16 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-l">☀️</div><span class="meal-name-text">الغداء — سمك مشوي مع رز بسمتي أسمر وسلطة</span></div><span class="meal-kcal-tag">٧٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>سمك (هامور أو سلمون) مشوي</td><td class="home-col">٢ قطعة كبيرة</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>رز بسمتي أسمر مطبوخ</td><td class="home-col">كوب ونصف</td><td class="metric-col">210 غ</td></tr>
+        <tr><td>سلطة خضراء مشكلة</td><td class="home-col">طبق كبير</td><td class="metric-col">250 غ</td></tr>
+        <tr><td>زيت زيتون</td><td class="home-col">١ ملعقة كبيرة</td><td class="metric-col">15 مل</td></tr>
+        <tr><td>عصير ليمون طازج</td><td class="home-col">٣ ملعقة كبيرة</td><td class="metric-col">45 مل</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-s">🍊</div><span class="meal-name-text">الوجبة الخفيفة</span></div><span class="meal-kcal-tag">٢٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>برتقالتان طازجتان</td><td class="home-col">برتقالتان متوسطتان</td><td class="metric-col">300 غ</td></tr>
+        <tr><td>لوز غير مملح</td><td class="home-col">١٥ حبة</td><td class="metric-col">22 غ</td></tr>
+      </tbody></table>
+    </div>
+    <div class="meal-section">
+      <div class="meal-cap"><div class="meal-left"><div class="meal-ico ico-d">🌙</div><span class="meal-name-text">العشاء — شوربة العدس مع الخبز والزيتون</span></div><span class="meal-kcal-tag">٦٠٠ سعرة</span></div>
+      <table><thead><tr><th>المكوّن</th><th>الكمية المنزلية</th><th class="metric-col">الكمية القياسية</th></tr></thead><tbody>
+        <tr><td>شوربة عدس أحمر</td><td class="home-col">٣ أكواب</td><td class="metric-col">550 مل</td></tr>
+        <tr><td>خبز أسمر</td><td class="home-col">رغيف ونصف</td><td class="metric-col">90 غ</td></tr>
+        <tr><td>زيتون أسود</td><td class="home-col">٨ حبات</td><td class="metric-col">40 غ</td></tr>
+        <tr><td>يوغرت قليل الدسم</td><td class="home-col">كوب كامل</td><td class="metric-col">200 غ</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+</div>
+
+<button class="print-btn" onclick="window.print()">🖨️ طباعة الخطة</button>
+
+</body>
+</html>
